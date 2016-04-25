@@ -188,7 +188,7 @@ This method creates a note on the page. Notes can be any string length and will 
 ui:check({
    label = "Enable Crit Notifications",
    map   = "enableCritNotifications",
-   onchange = function(wndControlCheckbox)
+   onchange = function(wndControlCheckbox, map, value, oldValue)
       --the checkbox option has changed
    end,
 })
@@ -203,7 +203,7 @@ This method creates a checkbox in the config panel, and supports the onchange pa
 ui:input({
    label = "Custom Harvesting Text",
    map   = "customHarvestText",
-   onchange = function(wndControlInputBox)
+   onchange = function(wndControlInputBox, map, value, oldValue)
       --the text in the input box has changed
    end,
 })
@@ -250,7 +250,7 @@ ui:combo({
    onpopulated = function(wndControlList)
       --all entries from your choice table have been added
    end,
-   onchange = function(wndControlButton)
+   onchange = function(wndControlButton, map, value, oldValue)
       --a dropdown item was chosen
    end,
 })
@@ -267,7 +267,7 @@ ui:color({
    format = "hex",            --hex "FFFFFF"   rgba {r=255,g=255,b=255,a=1}   table {255, 255, 255,1)
    dec    = true,             --numbers will go from 0-1 instead of 0-255
    alpha  = true,             --enable the alpha channel for this color
-   onchange = function(wndControlButton)
+   onchange = function(wndControlButton, map, value, oldValue)
       --the user has selected a color from the color picker
    end,
 })
@@ -288,7 +288,7 @@ ui:slider({
    label  = "Pick A Number",
    map    = "numberPicked",
    range  = "0,100"           --define the lowest and highest number
-   onchange = function(wndControl)
+   onchange = function(wndControl, map, value, oldValue)
       --the value of the slider has changed
    end,
 })

@@ -210,11 +210,12 @@ function Lib:OnCheckChange(wndHandle)
 
 	--update the user's variable
 	local value = wndHandle:IsChecked()
+	local oldValue = self:GetMapped(map)
 	self:SetMapped(map, value)
 
 	--onchange callback
 	if data.callbacks.onchange and type(data.callbacks.onchange) == 'function' then
-		data.callbacks.onchange(wndHandle)
+		data.callbacks.onchange(wndHandle, map, value, oldValue)
 	end
 end
 
@@ -225,6 +226,7 @@ function Lib:OnInputChange(wndHandle)
 
 	--update the user's variable
 	local value = wndHandle:GetText()
+	local self:GetMapped(map) = self:GetMapped(map)
 
 	if (data.format == "number") then
 		value = tonumber(value)
@@ -235,7 +237,7 @@ function Lib:OnInputChange(wndHandle)
 
 	--onchange callback
 	if data.callbacks.onchange and type(data.callbacks.onchange) == 'function' then
-		data.callbacks.onchange(wndHandle)
+		data.callbacks.onchange(wndHandle, map, value, oldValue)
 	end
 end
 
@@ -253,7 +255,7 @@ function Lib:OnSliderUpdate(wndHandle)
 	local data = self:LookupMap(map)
 	local editbox = wndHandle:GetParent():FindChild("editbox")
 	local nValue = math.floor(tonumber(wndHandle:GetValue()))
-
+	local oldValue = self:GetMapped(map)
 	editbox:SetText(nValue)
 
 	--update the user's variable
@@ -261,7 +263,7 @@ function Lib:OnSliderUpdate(wndHandle)
 
 	--callback
 	if data.callbacks.onchange and type(data.callbacks.onchange) == 'function' then
-		data.callbacks.onchange(wndHandle)
+		data.callbacks.onchange(wndHandle, map, tonumber(nValue), oldValue)
 	end
 end
 
@@ -270,6 +272,7 @@ function Lib:OnSliderEditboxUpdate(wndHandle)
 	local data = self:LookupMap(map)
 	local slider = wndHandle:GetParent():FindChild("slider")
 	local nValue = tonumber(wndHandle:GetText())
+	local oldValue = self:GetMapped(map)
 
 	--validate the input, but make sure we allow negative sign entry "-"
 	if wndHandle:GetText() == "-" then
@@ -294,7 +297,7 @@ function Lib:OnSliderEditboxUpdate(wndHandle)
 
 	--callback
 	if data.callbacks.onchange and type(data.callbacks.onchange) == 'function' then
-		data.callbacks.onchange(wndHandle)
+		data.callbacks.onchange(wndHandle, map, tonumber(nValue), oldValue)
 	end
 end
 
@@ -344,7 +347,7 @@ function Lib:OnComboOptionClick(wndHandle)
 	local source = self.wndMain:FindChild(self.conventions.controlPrefix .. self.useComboMap)
 	local label = wndHandle:GetText()
 	local value = self:GetComboValueByLabel(data.choices, label)
-
+	local oldValue = self:GetMapped(map)
 	--update the source button
 	source:SetText(label)
 
@@ -356,7 +359,7 @@ function Lib:OnComboOptionClick(wndHandle)
 
 	--onchange callback
 	if data.callbacks.onchange and type(data.callbacks.onchange) == 'function' then
-		data.callbacks.onchange(source)
+		data.callbacks.onchange(source, self.useComboMap, value, oldValue)
 	end
 end
 
@@ -459,7 +462,7 @@ function Lib:OnColorPickerApply(wndHandle, wndControl)
 	local color  = wndHandle:GetParent():FindChild("ColorPreview:Inner"):GetBGColor()
 	local swatch = self.wndMain:FindChild(self.conventions.controlPrefix .. self.useColorMap):FindChild("Inner")
 	local opacity = self.wndMain:FindChild("PopupColorPicker"):FindChild("FillOpacitySlider"):GetValue()/100
-
+	local oldValue = self:GetMapped(map)
 	--color here is in dec format {1, 1, 1, 1}
 	swatch:SetBGColor(color)
 	swatch:SetBGOpacity(opacity)
@@ -492,7 +495,7 @@ function Lib:OnColorPickerApply(wndHandle, wndControl)
 	wndHandle:GetParent():Close()
 
 	if data.callbacks.onchange and type(data.callbacks.onchange) == 'function' then
-		data.callbacks.onchange(swatch)
+		data.callbacks.onchange(swatch, map, returnColor, oldValue)
 	end
 end
 
