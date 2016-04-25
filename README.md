@@ -93,13 +93,16 @@ function myaddon:OnLoad()
     version   = "1.1-dev",                --any version information about your addon
     slash     = "uiconfig"                --optional slash command to open the ui panel
     onshow    = function(ui)
-      --config panel opened               --optional events: onshow, onhide, ondefault
+      --config panel opened               --optional events: onshow, onhide, ondefault, onnavchange
     end,
     onhide    = function(ui)
       --config panel closed
     end,
     ondefault = function(ui)
       --default settings have been applied
+    end,
+    onnavchange = function(wndPageContainer, categoryName)
+       --category got chosen
     end,
   }):build(function(ui)
       --this is your ui workspace

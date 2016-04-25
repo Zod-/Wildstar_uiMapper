@@ -59,6 +59,7 @@ function Lib:new(params)
 			onshow    = params.onshow,
 			onhide    = params.onhide,
 			ondefault = params.ondefault,
+			onnavchange = params.onnavchange,
 		},
 	}
 
@@ -197,6 +198,9 @@ function Lib:OnNavChange(wndHandle)
 	self:ClearOtherNavigation(categoryName)
 	pageContainer:Invoke()
 	self:CloseAllPopups()
+	if self.meta.callbacks.onnavchange and type(self.meta.callbacks.onnavchange) == 'function' then
+		self.meta.callbacks.onnavchange(pageContainer, categoryName)
+	end
 end
 
 --checkbox
