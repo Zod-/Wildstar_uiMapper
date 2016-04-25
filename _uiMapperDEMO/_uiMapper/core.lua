@@ -1,4 +1,4 @@
-local MAJOR = "uiMapper:0.9"
+local MAJOR = "uiMapper:0.9.1"
 MINOR = 1
 --[[-------------------------------------------------------------------------------------------
 	Client Lua Script for _uiMapper
