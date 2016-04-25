@@ -64,11 +64,11 @@ Some features I'd like to add when I get the time:
     ```lua
     function Addon:Init()
         --etc
-        
+
         local tDependencies = {
            "uiMapper:0.8.2", --this name needs to match the name listed at the top of core.lua
         }
-        
+
         --etc
     end
     ```
@@ -80,11 +80,11 @@ uiMapper works by registering your addon first, and then passing the workspace b
 ```lua
 function myaddon:OnLoad()
     --etc
-    
+
   local uiMapper = Apollo.GetPackage("uiMapper:0.8.2").tPackage
   --change "uiMapper:0.8.2" to whatever you used in your dependancy check
   --which is what is found at the top of core.lua
-  
+
   self.ui  = uiMapper:new({
     container = self,                     --this is where your addon settings are stored
     defaults  = self.defaults             --the variable layout needs to match your container layout perfectly
