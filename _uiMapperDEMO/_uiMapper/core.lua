@@ -226,7 +226,7 @@ function Lib:OnInputChange(wndHandle)
 
 	--update the user's variable
 	local value = wndHandle:GetText()
-	local self:GetMapped(map) = self:GetMapped(map)
+	local oldValue = self:GetMapped(map)
 
 	if (data.format == "number") then
 		value = tonumber(value)
