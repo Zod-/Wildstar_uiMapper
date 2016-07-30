@@ -635,6 +635,28 @@ function Lib:input(params)
 	return self
 end
 
+function Lib:confirmbutton(params)
+	self:CategoryCheck()
+	local page = self:GetPageByCategory(self.useCategory):FindChild("ContentRegion")
+	local control = Apollo.LoadForm(self.xmlDoc, "confirmButton", page, self)
+	if control then
+		local button = control:FindChild("button")
+		button:SetText(params.label)
+		button:SetActionData(params.confirmButtonType, params.actionData)
+
+		self.buttons = self.buttons or {}
+		local count = 0
+		for _ in pairs(self.buttons) do count = count + 1 end
+		local name = self.conventions.controlPrefix .. count
+		button:SetName(name)
+		self.buttons[name] = params.onclick
+
+		page:ArrangeChildrenVert()
+	end
+
+	return self
+end
+
 function Lib:button(params)
 	self:CategoryCheck()
 	local page = self:GetPageByCategory(self.useCategory):FindChild("ContentRegion")

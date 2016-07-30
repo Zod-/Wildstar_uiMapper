@@ -2,6 +2,7 @@
 <Addon Author="Frosthaven" APIVersion="11" Name="_uiMapperDEMO" Description="DEMO addon for uiMapper">
 	<!-- uiMapper -->
     <Script Name="_uiMapper\core.lua"/>
+    <Form Name="_uiMapper\panel.xml"/>
     <!-- /uiMapper -->
 
     <Script Name="main.lua"/>

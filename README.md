@@ -5,7 +5,7 @@ uiMapper is a template-based UI generator for creating options and binding them 
 0.9.1
    - Added onnavchange event
    - Added map,value and oldValue to onchange events
-   
+
 0.9
    - Added :slider() method
    - Added :pagedivider() method
@@ -226,7 +226,23 @@ ui:button({
    end,
 })
 ```
-This method creates a button with no mapping. Useful for creating interactivity.
+This method creates a button with no mapping. Useful for creating interactivity.hange parameter callback.
+
+---
+### :confirmbutton(```{table}```)
+```lua
+--sets nothing
+--provides the button wndControl
+ui:confirmbutton({
+   label = "Copy url",
+   actionData = "url",
+   confirmButtonType = GameLib.CodeEnumConfirmButtonType.CopyToClipboard,
+   onclick = function(wndControlButton)
+      --the button was clicked
+   end,
+})
+```
+This method creates a confirmButton with no mapping.
 
 ---
 ### :choicetable(```"string"```,```{table}```)
