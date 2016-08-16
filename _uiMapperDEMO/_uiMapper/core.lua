@@ -98,7 +98,8 @@ function Lib:OnDocLoaded()
 
     --config panel setup
     self:PrepareWindow()
-    self.wndMain:Show(false, true)
+    self.wndMain:Show(self.delayedShow or false, true)
+    self.delayedShow = nil
 
     --slash command setup
     if self.meta.slash then
@@ -132,6 +133,10 @@ function Lib:OnMainWindowShow(wndHandle, wndControl)
 end
 
 function Lib:OnSlashCommand()
+  if not self.wndMain then
+    self.delayedShow = true
+    return
+  end
   if self.wndMain:IsVisible() then
     self.wndMain:Close()
   else
