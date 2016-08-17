@@ -103,6 +103,7 @@ function myaddon:OnLoad()
     author    = "Frosthaven",             --the author of the addon
     version   = "1.1-dev",                --any version information about your addon
     slash     = "uiconfig"                --optional slash command to open the ui panel
+    path      = "libs/_uiMapper/"         --optional path when not using "_uiMapper/" default
     onshow    = function(ui)
       --config panel opened               --optional events: onshow, onhide, ondefault, onnavchange
     end,

@@ -55,6 +55,7 @@ function Lib:new(params)
     author = params.author,
     version = params.version,
     slash = params.slash,
+    path = params.path or "_uiMapper/",
     callbacks = {
       onshow = params.onshow,
       onhide = params.onhide,
@@ -77,7 +78,7 @@ function Lib:build(handler, context)
   self.callback = {handler = handler, context = context}
 
   --load our config template
-  self.xmlDoc = XmlDoc.CreateFromFile("_uiMapper/panel.xml")
+  self.xmlDoc = XmlDoc.CreateFromFile(self.meta.path .. "panel.xml")
   self.xmlDoc:RegisterCallback("OnDocLoaded", self)
 
   return self
