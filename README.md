@@ -5,7 +5,9 @@ uiMapper is a template-based UI generator for creating options and binding them 
 0.9.3
    - Cleaned up several global variables
    - Delay showing the window to prevent crashes when wndMain hasn't been loaded yet
-
+   - Added path parameter
+   - Added callbacks with contexts
+   
 0.9.2
    - Added :confirmbutton() method
 
