@@ -136,6 +136,24 @@ But remember, chaining methods is merely optional (more on this below)! The foll
  })
 ```
 
+You can also specify a function for building the ui instead of inlining it.
+Make sure to specify the context (self).
+```lua
+ self.ui:build(self.BuildUI, self)
+```
+
+The same can be done with all the different events
+```lua
+--inline
+onshow = function(ui) end
+
+--local function
+onshow = OnShow
+
+--context
+onshow = { handler = self.OnShow, context = self }
+```
+
 And now with the magic function call done and our UI ready to be built, on to...
 
 ## METHODS: An Introduction
